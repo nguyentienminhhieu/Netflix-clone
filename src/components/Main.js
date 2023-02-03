@@ -1,35 +1,23 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import requests from '../Requests'
-
-// const Main = () => {
-//   const [movies, setMovies] = useState([])
-
-//   useEffect(() => {
-//     axios.get(requests.requestPopular).then((response)=> {
-//       setMovies(response.data.results)
-//     })
-//   }, [])
-//   console.log(movies)
-//   return (
-//     <div>
-    
-//     </div>
-//   )
-// }
+import Movie from './Movie'
 
 
 const Main = () => {
   const [movies, setMovies] = useState([]);
+  // const [selectMovie, setSeclectMovie] = useState({});
+
 
   const movie = movies[Math.floor(Math.random() * movies.length)];
-
+  
   useEffect(() => {
     axios.get(requests.requestPopular).then((response) => {
       setMovies(response.data.results);
+
     });
   }, []);
-  //   console.log(movie);
+    // console.log(movie);
 
   const truncateString = (str, num) => {
     if (str?.length > num) {
@@ -38,6 +26,16 @@ const Main = () => {
       return str;
     }
   };
+//   const renderMovie = () => {
+//     {movies.map((item, id) => (
+//       <Movie 
+//       key={id} 
+//       item={item} 
+//       selectMovie = {setSeclectMovie}
+//       />
+//     ))
+//   }
+// }
 
   return (
     <div className='w-full h-[600px] text-white'>
@@ -51,10 +49,10 @@ const Main = () => {
         <div className='absolute w-full top-[20%] p-4 md:p-8'>
           <h1 className='text-3xl md:text-5xl font-bold'>{movie?.title}</h1>
           <div className='my-4'>
-            <button className='border bg-gray-300 text-black border-gray-300 py-2 px-5'>
+            <button className='border bg-gray-300 text-black border-gray-300 py-2 px-5 hover:bg-gray-100'>
               Play
             </button>
-            <button className='border text-white border-gray-300 py-2 px-5 ml-4'>
+            <button className='border text-white border-gray-300 py-2 px-5 ml-4 hover:bg-slate-900'>
               Watch Later
             </button>
           </div>

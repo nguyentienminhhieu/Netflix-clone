@@ -4,7 +4,7 @@ import { UserAuth } from '../Context/AuthContext';
 import { db } from '../firebase';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 
-const Movie = ({ item }) => {
+const Movie = ({ item}) => {
   const [like, setLike] = useState(false);
   const [saved, setSaved] = useState(false);
   const { user } = UserAuth();
@@ -27,8 +27,11 @@ const Movie = ({ item }) => {
     }
   };
 
+  
   return (
-    <div className='sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2'>
+    <div className='sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2' 
+    // onClick={() => selectMovie(item)}
+    >
       <img
         className=' w-full h-auto block'
         src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
